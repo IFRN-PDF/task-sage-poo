@@ -8,10 +8,14 @@ def get_input_for_project():
 
 def get_input_for_task():
     name = input("Nome da tarefa: ")
-    project_id = input("ID do projeto: ")
-    due_date = input("Data de conclusão (AAAA-MM-DD): ")
-    status = input("Status da tarefa: ")
-    return name, project_id, due_date, status
+    priority = int(input("Prioridade (número): "))  
+    status_id = int(input("ID do Status: ")) 
+    project_id = int(input("ID do projeto: ")) 
+    begin_date = input("Data de início (AAAA-MM-DD): ")
+    end_date = input("Data de conclusão (AAAA-MM-DD): ")
+
+    return name, priority, status_id, project_id, begin_date, end_date
+
 
 def display_data(tabela):
     data = search_data(tabela)
@@ -69,8 +73,9 @@ def admin_task_options():
             break
 
 def show_menu(user_type):
+    print(user_type)
     while True:
-        if user_type == "admin":
+        if user_type == "administrator":
             print("\n-- Menu Administrador --")
             print("1. Projetos")
             print("2. Tarefas")

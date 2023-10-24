@@ -36,18 +36,23 @@ def login_user(username, password):
             if result:
                 hashed_password = result[0].encode('utf-8')
                 if bcrypt.checkpw(password.encode('utf-8'), hashed_password):
-                    return result[1]  # Retorna o tipo de usuário
+                    return result[1]  
     return None
 
 # CRUD para Projetos
 
-def add_project(name, begin_date, end_date):
+def add_project(**kwargs):
+    columns = ', '.join(kwargs.keys())
+    placeholders = ', '.join(['%s'] * len(kwargs))
+    values = tuple(kwargs.values())
+
     with conectar_db() as conn:
         with conn.cursor() as cursor:
             cursor.execute(
-                "INSERT INTO projects (name, begin_date, end_date) VALUES (%s, %s, %s)",
-                (name, begin_date, end_date)
+                f"INSERT INTO projects ({columns}) VALUES ({placeholders})",
+                values
             )
+
 
 def remove_project(project_id):
     with conectar_db() as conn:
@@ -62,12 +67,16 @@ def update_project(project_id, **kwargs):
 
 # CRUD para Tarefas
 
-def add_task(name, project_id, due_date, status):
+def add_task(**kwargs):
+    columns = ', '.join(kwargs.keys())
+    placeholders = ', '.join(['%s'] * len(kwargs))
+    values = tuple(kwargs.values())
+
     with conectar_db() as conn:
         with conn.cursor() as cursor:
             cursor.execute(
-                "INSERT INTO tasks (name, project_id, due_date, status) VALUES (%s, %s, %s, %s)",
-                (name, project_id, due_date, status)
+                f"INSERT INTO tasks ({columns}) VALUES ({placeholders})",
+                values
             )
 
 def remove_task(task_id):
