@@ -16,7 +16,7 @@ if __name__ == "__main__":
     config = configparser.ConfigParser()
     config.read('config.ini')
 
-    if config.get('DEFAULT', 'execute_initial_setup').lower() == 'yes':
+    if config.get('SETTINGS', 'execute_initial_setup').lower() == 'yes':
         initial_setup()
     
     logged_in, user_type = login()

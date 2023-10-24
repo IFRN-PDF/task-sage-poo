@@ -1,4 +1,4 @@
-from queries import conectar_db
+from .queries import conectar_db
 
 def criar_tabelas():
     with conectar_db() as conn:
@@ -6,7 +6,7 @@ def criar_tabelas():
             # Tabela de Projetos
             cursor.execute("""
                 CREATE TABLE IF NOT EXISTS projects (
-                    id serial integer PRIMARY KEY,
+                    id serial PRIMARY KEY,
                     name text NOT NULL,
                     begin_date text,
                     end_date text
@@ -16,7 +16,7 @@ def criar_tabelas():
             # Tabela de Tarefas
             cursor.execute("""
                 CREATE TABLE IF NOT EXISTS tasks (
-                    id serial integer PRIMARY KEY,
+                    id serial PRIMARY KEY,
                     name text NOT NULL,
                     priority integer,
                     status_id integer NOT NULL,

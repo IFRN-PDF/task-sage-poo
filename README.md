@@ -66,7 +66,11 @@ Agora, você pode executar o projeto:
 ```
 python src/main.py
 ```
-
+### **5.1. Executando o Projeto**:
+Se aparecer um erro de módulo nāo encontrado, execute o seguinte comando.
+```
+export PYTHONPATH=.:$PYTHONPATH
+```
 Siga as instruções na tela para fazer login e interagir com o sistema.
 
 ### **6. Desativando o Ambiente Virtual**:

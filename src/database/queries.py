@@ -2,6 +2,20 @@ import bcrypt
 from .config import config
 import psycopg2
 
+def criar_database():
+    params = config()
+    database_name = params.pop('database', None)
+    
+    conn = psycopg2.connect(**params)
+    conn.autocommit = True 
+
+    try:
+        with conn.cursor() as cursor:
+            cursor.execute(f"CREATE DATABASE {database_name};")
+    finally:
+        conn.close()  
+
+                
 def conectar_db():
     params = config()
     return psycopg2.connect(**params)
