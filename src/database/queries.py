@@ -14,8 +14,7 @@ def criar_database():
             cursor.execute(f"CREATE DATABASE {database_name};")
     finally:
         conn.close()  
-
-                
+            
 def conectar_db():
     params = config()
     return psycopg2.connect(**params)
