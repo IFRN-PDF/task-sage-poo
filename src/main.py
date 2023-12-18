@@ -1,8 +1,8 @@
 import configparser
 from utilities.initial_setup import initial_setup
-from src.database.queries import login_user
+from database.queries import login_user
 import getpass 
-from src.ui.menu import show_menu
+from ui.menu import show_menu
 
 def login():
     print("Bem-vindo ao Sistema!")
@@ -14,7 +14,7 @@ def login():
 if __name__ == "__main__":
 
     config = configparser.ConfigParser()
-    config.read('config.ini')
+    config.read('../config.ini')
 
     if config.get('SETTINGS', 'execute_initial_setup').lower() == 'yes':
         initial_setup()

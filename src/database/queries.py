@@ -53,7 +53,6 @@ def add_project(**kwargs):
                 values
             )
 
-
 def remove_project(project_id):
     with conectar_db() as conn:
         with conn.cursor() as cursor:
@@ -72,6 +71,7 @@ def add_task(**kwargs):
     placeholders = ', '.join(['%s'] * len(kwargs))
     values = tuple(kwargs.values())
 
+    print(values)
     with conectar_db() as conn:
         with conn.cursor() as cursor:
             cursor.execute(

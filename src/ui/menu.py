@@ -1,4 +1,4 @@
-from ..database.queries import add_project, remove_project, update_project, search_data, add_task, remove_task, update_task
+from database.queries import add_project, remove_project, update_project, search_data, add_task, remove_task, update_task
 
 def get_input_for_project():
     name = input("Nome do projeto: ")
@@ -34,7 +34,8 @@ def admin_project_options():
         choice = input("\nEscolha uma opção: ")
 
         if choice == "1":
-            add_project(*get_input_for_project())
+            name, begin_date, end_date = get_input_for_project()
+            add_project(name=name, begin_date=begin_date, end_date=end_date)
         elif choice == "2":
             project_id = input("ID do projeto a ser removido: ")
             remove_project(project_id)
@@ -59,7 +60,8 @@ def admin_task_options():
         choice = input("\nEscolha uma opção: ")
 
         if choice == "1":
-            add_task(*get_input_for_task())
+            name, priority, status_id, project_id, begin_date, end_date = get_input_for_task()
+            add_task(name=name, priority=priority, status_id=status_id, project_id=project_id, begin_date=begin_date, end_date=end_date)
         elif choice == "2":
             task_id = input("ID da tarefa a ser removida: ")
             remove_task(task_id)

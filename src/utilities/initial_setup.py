@@ -1,5 +1,5 @@
-from src.database.queries import add_user, criar_database
-from src.database.models import criar_tabelas
+from database.queries import add_user, criar_database
+from database.models import criar_tabelas
 
 def initial_setup():
     criar_database()
