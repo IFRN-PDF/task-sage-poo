@@ -1,12 +1,15 @@
-from database.queries import add_user, criar_database
-from database.models import criar_tabelas
+from database.queries import BancoDeDados, Usuario
+from database.models import ModeloBD
 
 def initial_setup():
-    criar_database()
-    criar_tabelas()
-    
-    add_user("admin", "password123", "administrator")
-    add_user("viewer", "password123", "viewer")
+    # Criar banco de dados e tabelas
+    db = BancoDeDados()
+    db.criar_database()
 
-if __name__ == "__main__":
-    initial_setup()
+    modelo = ModeloBD(db)
+    modelo.criar_tabelas()
+
+    # Adicionar usuários
+    usuario = Usuario(db)
+    usuario.adicionar("admin", "password123", "administrator")
+    usuario.adicionar("viewer", "password123", "viewer")
